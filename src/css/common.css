@@ -1,0 +1,198 @@
+/**
+ * Created by GG on 15/7/31.
+ */
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	position: relative;
+	font: 28px/1.2 Heiti SC, Helvetica Neue, Helvetica, sans-serif;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-overflow-scrolling: touch;
+	-webkit-text-size-adjust: 100%;
+	-webkit-user-select: none;
+}
+
+a,
+img {
+	-webkit-touch-callout: none;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#common-loading,
+#common-landscape,
+#common-pc,
+#common-share {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 10000;
+	display: none;
+}
+
+#common-loading-center,
+#common-landscape-center,
+#common-pc-center {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+/*加载进度*/
+
+#common-loading {
+	background-color: #fff;
+}
+
+/*横屏提示*/
+
+#common-landscape {
+	background: #000;
+}
+
+#common-landscape-center:before {
+	content: '';
+	display: block;
+	width: 1em;
+	height: 2em;
+	margin: 0 auto 1em auto;
+	background: url("../img/common-landscape-phone.png") no-repeat center;
+	background-size: 100% 100%;
+	-webkit-animation: common-landscape 2.4s ease infinite;
+	animation: common-landscape 2.4s ease infinite;
+}
+
+#common-landscape-center:after {
+	content: '为了更好的体验，请使用竖屏浏览';
+	display: block;
+	color: #fff;
+	text-align: center;
+	font-size: .32em;
+}
+
+/*pc扫码提示*/
+
+#common-pc {
+	background: #000;
+}
+
+#common-pc-center img {
+	display: block;
+	border: 10px solid #fff;
+	margin: 0 auto 60px auto;
+}
+
+#common-pc-center:before {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: 113px;
+	width: 50px;
+	height: 50px;
+	margin-left: -25px;
+	background: url("../img/common-pc-logo.png") no-repeat center;
+	background-size: 100% 100%;
+	border-radius: 9px;
+}
+
+#common-pc-center:after {
+	content: '为了更好的体验，请使用手机扫描二维码浏览';
+	display: block;
+	color: #fff;
+	text-align: center;
+	font-size: 20px;
+}
+
+/*分享提示*/
+
+#common-share {
+	background: url("../img/common-share-tip.png") no-repeat right top, rgba(0, 0, 0, 0.6);
+	background-size: 60% auto;
+}
+
+/*通用容器*/
+
+.common-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 750px;
+	height: 1206px;
+}
+
+/*动画帧*/
+
+@-webkit-keyframes common-landscape {
+	0% {
+		-webkit-transform: rotate(90deg);
+		opacity: 0;
+	}
+
+	15% {
+		-webkit-transform: rotate(90deg);
+		opacity: 1;
+	}
+
+	50% {
+		-webkit-transform: rotate(0deg);
+		opacity: 1;
+	}
+
+	85% {
+		-webkit-transform: rotate(0deg);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: rotate(0deg);
+		opacity: 0;
+	}
+}
+
+@keyframes common-landscape {
+	0% {
+		-webkit-transform: rotate(90deg);
+		transform: rotate(90deg);
+		opacity: 0;
+	}
+
+	15% {
+		-webkit-transform: rotate(90deg);
+		transform: rotate(90deg);
+		opacity: 1;
+	}
+
+	50% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+		opacity: 1;
+	}
+
+	85% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+		opacity: 0;
+	}
+}

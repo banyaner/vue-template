@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>once-again</title>
+    <meta name="keywords" content="网易,新闻客户端">
+    <meta name="description" content="">
+    <meta name="author" content="网易">
+    <meta name="copyright" content="网易版权所有">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="full-screen" content="true">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="360-fullscreen" content="true">
+    <!-- build:css css/index.min.css -->
+    <link rel="stylesheet" href="src/css/lib/normalize.css"/>
+    <link rel="stylesheet" href="src/css/common.css"/>
+    <link rel="stylesheet" href="src/css/index.css"/>
+    <!-- endbuild -->
+    <!-- statistics -->
+</head>
+<body>
+<div id="common-loading">
+    <div id="common-loading-center"></div>
+</div>
+<div id="common-landscape">
+    <div id="common-landscape-center"></div>
+</div>
+<div id="common-pc">
+    <div id="common-pc-center"></div>
+</div>
+<div id="common-share">
+    <div style="display: none !important">
+        <div id="__newsapp_sharetext"></div>
+        <div id="__newsapp_sharephotourl"></div>
+        <div id="__newsapp_sharewxtitle"></div>
+        <div id="__newsapp_sharewxtext"></div>
+        <div id="__newsapp_sharewxthumburl"></div>
+        <div id="__newsapp_sharewxurl"></div>
+    </div>
+</div>
+<div class="common-container" id="page">
+    <input type="button" @click="showNext" value="Next"/>
+    <tip></tip>
+    <modal></modal>
+<!--可替换组件 组件转换效果-->
+    <component :is="currentView" transition="fade" transition-mode="out-in" keep-alive>
+    </component>
+</div>
+<!-- build:js js/index.min.js -->
+<script src="src/js/lib/fix-viewport.js"></script>
+<script src="src/js/lib/zepto.js"></script>
+<script src="src/js/lib/qrcode.js"></script>
+<script src="src/js/lib/pace.js"></script>
+<script src="src/js/lib/NewsAppClient.js"></script>
+<script src="src/js/common.js"></script>
+<script src="src/js/build.js"></script>
+<!-- endbuild -->
+</body>
+</html>
