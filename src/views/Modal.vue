@@ -48,7 +48,7 @@
     export default {
         data: function () {
             return {
-                show: false,
+                show: true,
                 msg: 'This is a modal!'
             }
         },

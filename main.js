@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import FirstPage from './views/FirstPage.vue'
-import SecondPage from './views/SecondPage.vue'
-import Modal from './views/Modal.vue'
-import Tip from './views/Tip.vue'
+import FirstPage from './src/views/FirstPage.vue'
+import SecondPage from './src/views/SecondPage.vue'
+import Modal from './src/views/Modal.vue'
+import Tip from './src/views/Tip.vue'
 let vm = new Vue({
     el: '#page',
     data: {

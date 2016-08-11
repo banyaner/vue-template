@@ -5,11 +5,11 @@ module.exports = {
   entry: [
     'webpack/hot/dev-server',
     'webpack-dev-server/client?http://localhost:8080/',
-    './src/main.js'
+    './main.js'
   ],
   output: {
-    path: path.resolve(__dirname, './src/js/'),
-    publicPath: '/src/js/',
+    path: path.resolve(__dirname, './ajaxjs/'), //'./ajaxjs/'为编译后的js存放位置
+    publicPath: '/ajaxjs/', // '/ajaxjs/'为访问时资源的路径，注意这里是绝对路径，使用webpack分包的时候，分包的路径就是根目录+/ajaxjs/*.build.js  一定要注意路径问题
     filename: 'build.js'
   },
   plugins: [

@@ -8,9 +8,9 @@ var pkg = require('./package.json'),
     replace = require('gulp-replace'),
     gulpFilter = require('gulp-filter'),
     path = {
-        index: 'index.html',
-        asset: ['src/**/*','!***/views/', '!src/**/*.vue', '!src/css/**/*', '!src/js/**/*', '!src/main.js', 'index.html'],
-        build: 'build/',
+        index: './index.html',
+        asset: ['src/**/*', '!***/views/', '!src/**/*.vue', '!src/css/**/*',   '!src/js/**/*'],
+        build: 'dist/',
         ftpPath: 'activity/' + pkg.name
     },
     ftppass = {
@@ -27,13 +27,17 @@ var pkg = require('./package.json'),
 gulp.task('clean', function (cb) {
     return del([path.build], cb);
 });
-gulp.task('copy', ['clean'], function () {
+gulp.task('copyOthers', ['clean'], function () {
     return gulp.src(path.asset)
         .pipe(gulp.dest(path.build));
 });
+gulp.task('copy', ['copyOthers'], function(){
+    return gulp.src('ajaxjs/*.build.js').pipe(gulp.dest(path.build + 'ajaxjs/'));
+
+});
 
 gulp.task('minify', ['clean', 'copy'], function () {
-    return gulp.src(path.index)
+    return gulp.src('./index.html')
         .pipe(usemin({
             css: [minifyCss()],
             js: [uglify()]
