@@ -1,85 +1,80 @@
-var pkg = require('./package.json'),
-    gulp = require('gulp'),
-    del = require('del'),
-    usemin = require('gulp-usemin'),
-    uglify = require('gulp-uglify'),
-    minifyCss = require('gulp-minify-css'),
-    ftp = require('vinyl-ftp'),
+var gulp = require('gulp'),
+//del = require('del'),
     replace = require('gulp-replace'),
-    gulpFilter = require('gulp-filter'),
-    path = {
-        index: './index.html',
-        asset: ['src/**/*', '!***/views/', '!src/**/*.vue', '!src/css/**/*',   '!src/js/**/*'],
-        build: 'dist/',
-        ftpPath: 'activity/' + pkg.name
-    },
-    ftppass = {
+    filter = require('gulp-filter'),
+    ftp = require('vinyl-ftp'),
+    min = require('gulp-usemin'),
+    uglify = require('gulp-uglify'),
+    pkg = require('./package.json');
+var path = {
+    dist: ['dist/**/*', '!dist/**/*.map', '!dist/js/lib/*.js','!dist/js/bundle.js', 'dist/js/*.js'],
+    images: {from: 'src/img/*', to: 'dist/img'},
+    ftpPath: 'activity/' + pkg.name,
+    ftpConfig: {
         test: {
-            username: 'ynren1',
-            password: 'ynren@163'
+            host: '220.181.98.57',
+            port: '2100',
+            userName: 'ynren1',
+            pwd: 'ynren@163'
         },
         publish: {
-            username: 'wangjun2012',
-            password: 'wangjun2012'
+            host: '220.181.29.249',
+            port: '16321',
+            userName: 'wangjun2012',
+            pwd: 'wangjun2012'
         }
-    };
-
-gulp.task('clean', function (cb) {
-    return del([path.build], cb);
-});
-gulp.task('copyOthers', ['clean'], function () {
-    return gulp.src(path.asset)
-        .pipe(gulp.dest(path.build));
-});
-gulp.task('copy', ['copyOthers'], function(){
-    return gulp.src('ajaxjs/*.build.js').pipe(gulp.dest(path.build + 'ajaxjs/'));
-
+    }
+};
+//gulp.task('clean', function (cb) {
+//    return del([path.dist], cb);
+//});
+gulp.task('copy-img', function () {
+    return gulp.src(path.images.from)
+        .pipe(gulp.dest(path.images.to));
 });
 
-gulp.task('minify', ['clean', 'copy'], function () {
-    return gulp.src('./index.html')
-        .pipe(usemin({
-            css: [minifyCss()],
-            js: [uglify()]
+gulp.task('min-js', function(){
+    return gulp.src('dist/index.html')
+        .pipe(min({
+            js:[uglify()]
         }))
-        .pipe(gulp.dest(path.build));
+        .pipe(gulp.dest('dist/'));
 });
-
-gulp.task('test', ['minify'], function () {
+gulp.task('test', ['min-js'], function () {
     var conn = ftp.create({
-        host: '220.181.98.57',
-        port: '2100',
-        user: ftppass.test.username,
-        password: ftppass.test.password,
+        host: path.ftpConfig.test.host,
+        port: path.ftpConfig.test.port,
+        user: path.ftpConfig.test.userName,
+        password: path.ftpConfig.test.pwd,
         parallel: 5
     });
-
-    return gulp.src(path.build + '**/*')
+    return gulp.src(path.dist)
         .pipe(conn.dest(path.ftpPath));
+    //.pipe(gulp.dest('test/'));
 });
-
-gulp.task('publish', ['minify'], function () {
+gulp.task('publish', ['min-js'], function () {
     var conn = ftp.create({
-        host: '220.181.29.249',
-        port: '16321',
-        user: ftppass.publish.username,
-        password: ftppass.publish.password,
+        host: path.ftpConfig.publish.host,
+        port: path.ftpConfig.publish.port,
+        user: path.ftpConfig.publish.userName,
+        password: path.ftpConfig.publish.pwd,
         parallel: 5
     });
 
-    var filter = gulpFilter('index.html', {restore: true});
+    var f = filter('dist/index.html', {restore: true});
     var version = Date.now();
     var statistics = '<script src="http://analytics.163.com/ntes.js"></script>' +
         '<script>_ntes_nacc = "mapp";neteaseTracker();</script>' +
         '<script>(function(){var c=navigator.userAgent;var b=document.referrer;var d="";if(c.match(/micromessenger/gi)){d="wx"}else{if(c.match(/weibo/gi)||b.match(/weibo\.com/gi)){d="wb"}else{if(c.match(/yixin/gi)){d="yx"}else{if(c.match(/qq/gi)||b.match(/(qq|qzone)\.com/gi)){d="qq"}}}}var e="' + pkg.name + '";var a="?spst=5&spss=newsapp&spsf="+d+"&modelid="+e;neteaseTracker(false,"http://sps.163.com/special/"+a,"","sps");window.spsFuncUrl="http://sps.163.com/func/"+a;}());</script>' +
         '<script>var _hmt=_hmt||[];(function(){var b=document.createElement("script");b.src="//hm.baidu.com/hm.js?d12d3bdb9cb406172ef7f054d27e7ae0";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>';
 
-    return gulp.src(path.build + '**/*')
-        .pipe(filter)
-        .pipe(replace('css/index.min.css', 'css/index.min.css?v=' + version))
-        .pipe(replace('js/index.min.js', 'js/index.min.js?v=' + version))
-        .pipe(replace('<!-- statistics -->', statistics))
-        .pipe(filter.restore)
+    return gulp.src(path.dist)
+        .pipe(f)
+        .pipe(replace("<!-- statistics -->", statistics))
+        .pipe(replace("js/index.min.js", "js/index.min.js?v=" + version))
+        .pipe(replace("css/index.min.css", "js/index.min.css?v=" + version))
+        .pipe(f.restore)
         .pipe(conn.dest(path.ftpPath));
+        //.pipe(gulp.dest('test/'));
 });
 
