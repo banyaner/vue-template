@@ -2,14 +2,18 @@
   "name": "once-again",
   "description": "try vue.js again",
   "author": "zhongjingxue <bjzhongjingxue@corp.netease.com>",
+  "main": "main.js",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "clean": "rm -rf dist",
+    "copy-lib": "cp -r src/js/lib dist/js && cp src/index.html dist/index.html",
+    "dev": "npm run copy-lib && webpack-dev-server --inline --hot",
+    "build": "npm run clean &&cross-env NODE_ENV=production webpack --progress --hide-modules && npm run copy-lib"
   },
   "dependencies": {
-    "vue": "^1.0.0",
-    "babel-runtime": "^6.0.0"
+    "babel-runtime": "^6.0.0",
+    "style-loader": "^0.13.1",
+    "vue": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -30,14 +34,16 @@
     "webpack-dev-server": "^1.12.0",
     "node-sass": "^3.8.0",
     "sass-loader": "^4.0.0",
+    "style-loader":"^0.13.1",
     "gulp": "^3.9.0",
     "del": "^1.2.0",
-    "gulp-filter": "^3.0.1",
+    "gulp-filter": "^4.0.0",
     "gulp-imagemin": "^3.0.1",
     "gulp-minify-css": "^1.1.6",
     "gulp-replace": "^0.5.4",
-    "gulp-uglify": "^1.2.0",
-    "gulp-usemin": "^0.3.11",
-    "vinyl-ftp": "^0.4.5"
+    "vinyl-ftp": "^0.5.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "gulp-uglify": "^2.0.0",
+    "gulp-usemin": "^0.3.24"
   }
 }
