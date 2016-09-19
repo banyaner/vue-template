@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf dist",
-    "copy-lib": "cp -r src/js/lib dist/js && cp src/index.html dist/index.html",
+    "copy-lib": "cp -r src/img/share dist/img/share && cp -r src/js/lib dist/js && cp src/index.html dist/index.html",
     "dev": "npm run copy-lib && webpack-dev-server --inline --hot",
     "build": "npm run clean &&cross-env NODE_ENV=production webpack --progress --hide-modules && npm run copy-lib"
   },

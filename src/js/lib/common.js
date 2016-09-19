@@ -99,7 +99,7 @@
         NewsAppShare.update({
             title: '分享标题',
             desc: '分享描述',
-            img_url: NewsAppShare.getAbsPath('img/share-icon.png'),
+            img_url: NewsAppShare.getAbsPath('img/share/share-icon.png'),
             link: NewsAppShare.getAbsPath()
         });
 
