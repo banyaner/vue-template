@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>once-again</title>
+    <title>vue-gulp-template</title>
     <meta name="keywords" content="网易,新闻客户端">
     <meta name="description" content="">
     <meta name="author" content="网易">
@@ -38,10 +38,8 @@
     </div>
 </div>
 <div class="common-container" id="page">
-    <input type="button" @click="showNext" value="Next"/>
-    <tip></tip>
-    <modal></modal>
-<!--可替换组件 组件转换效果-->
+    <input type="button" v-touch:tap="showSecPage" value="显示第二页"/>
+    <!--可替换组件 组件转换效果-->
     <component :is="currentView" transition="fade" transition-mode="out-in" keep-alive>
     </component>
 </div>
