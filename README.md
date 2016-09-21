@@ -78,40 +78,38 @@
 由于活动项目中页面比较少，均采用单页面实现。所以我采用切换组件的方式实现路由管理。
 所以main.js中写成
 ```ruby
+import '../css/lib/normalize.css'
+import '../css/common.css'
+import '../css/index.css'
 import Vue from 'vue'
-import FirstPage from './FirstPage.vue'
-import SecondPage from './SecondPage.vue'
+import VueTouch from 'vue-touch'    //需要时引入vue-touch插件
+Vue.use(VueTouch)
+import FirPage from './../views/FirPage.vue'
+import SecPage from './../views/SecPage.vue'
 let vm = new Vue({
     el: '#page',
     data: {
-        currentView: 'firstPage'
+        currentView: 'firPage'
     },
     components: {
-        firstPage: FirstPage,
-        secondPage: SecondPage,
+        FirPage, SecPage
     },
     methods: {
         //切换组件
-        showNext: function () {
-            this.currentView = 'secondPage';
-        },
-        submitInfo: function () {
-            //关闭模态框
-            this.$broadcast('close-modal');
-
-        },
-        //记录历史
-        recordHash: function () {
+        showSecPage: function () {
+            NewsAppShare.show()
+            this.currentView = 'secPage'
             history.pushState({page: this.currentView}, "", location.href);
             console.log(history.state)
+
         }
     }
 });
-history.replaceState({page: "firstPage"}, "", 'index.html');
-console.log(history.state)
+history.replaceState({page: "firPage"}, "", 'index.html');
 window.addEventListener('popstate', function(event) {
     vm.currentView=event.state.page;
 });
+
 ```
 考虑页面是多屏的，则将每一屏写成一个组件（FirtPage.vue, SecondPage.vue...）。然后通过currentView切换视图。
 历史栈则采用history API实现
