@@ -27,7 +27,7 @@
 <div id="common-pc">
     <div id="common-pc-center"></div>
 </div>
-<div id="common-share">
+<div id="common-share" class="common-share">
     <div style="display: none !important">
         <div id="__newsapp_sharetext"></div>
         <div id="__newsapp_sharephotourl"></div>
@@ -38,20 +38,18 @@
     </div>
 </div>
 <div class="common-container" id="page">
-    <input type="button" @click="showNext" value="Next"/>
-    <tip></tip>
-    <modal></modal>
+    <input type="button" @click="showSecPage" value="显示第二页"/>
 <!--可替换组件 组件转换效果-->
     <component :is="currentView" transition="fade" transition-mode="out-in" keep-alive>
     </component>
 </div>
 <!-- build:js js/index.min.js -->
-<script src="js/lib/fix-viewport.js"></script>
-<script src="js/lib/zepto.js"></script>
-<script src="js/lib/pace.js"></script>
-<script src="js/lib/qrcode.js"></script>
-<script src="js/lib/NewsAppClient.js"></script>
-<script src="js/lib/common.js"></script>
+<!--<script src="js/lib/fix-viewport.js"></script>-->
+<!--<script src="js/lib/zepto.js"></script>-->
+<!--<script src="js/lib/pace.js"></script>-->
+<!--<script src="js/lib/qrcode.js"></script>-->
+<!--<script src="js/lib/NewsAppClient.js"></script>-->
+<!--<script src="js/lib/common.js"></script>-->
 <script src="js/bundle.js"></script>
 <!-- endbuild -->
 </body>

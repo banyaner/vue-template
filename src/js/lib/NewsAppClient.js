@@ -1,4 +1,3 @@
-;(function(window){
 
 var Navigator =(function(){
     var frame,
@@ -402,7 +401,4 @@ function NewsApp(protocolHandler){
         Callbacks: Callbacks
     }
 }//end newsApp
-
-
-window.NewsAppClient = NewsApp(Navigator.protocol);
-}(window));
+export var NewsAppClient = NewsApp(Navigator.protocol);

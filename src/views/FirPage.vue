@@ -13,7 +13,7 @@
 
 
     export default {
-        data: ()=> {
+        data: function() {
             return {
                 msg: 'This is a component!'
             }
@@ -23,7 +23,7 @@
         }
     }
 </script>
-<style lang="sass" scoped>
+<style lang="sass">
     $red:red;
     h1{
         background: $red;

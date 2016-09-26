@@ -33,14 +33,14 @@ gulp.task('copy-img', function () {
         .pipe(gulp.dest(path.images.to));
 });
 
-gulp.task('min-js', function(){
-    return gulp.src('dist/index.html')
-        .pipe(min({
-            js:[uglify()]
-        }))
-        .pipe(gulp.dest('dist/'));
-});
-gulp.task('test', ['min-js'], function () {
+//gulp.task('min-js', function(){
+//    return gulp.src('dist/index.html')
+//        .pipe(min({
+//            js:[uglify()]
+//        }))
+//        .pipe(gulp.dest('dist/'));
+//});
+gulp.task('test', function () {
     var conn = ftp.create({
         host: path.ftpConfig.test.host,
         port: path.ftpConfig.test.port,
@@ -52,7 +52,7 @@ gulp.task('test', ['min-js'], function () {
         .pipe(conn.dest(path.ftpPath));
     //.pipe(gulp.dest('test/'));
 });
-gulp.task('publish', ['min-js'], function () {
+gulp.task('publish', function () {
     var conn = ftp.create({
         host: path.ftpConfig.publish.host,
         port: path.ftpConfig.publish.port,
@@ -71,8 +71,8 @@ gulp.task('publish', ['min-js'], function () {
     return gulp.src(path.dist)
         .pipe(f)
         .pipe(replace("<!-- statistics -->", statistics))
-        .pipe(replace("js/index.min.js", "js/index.min.js?v=" + version))
-        .pipe(replace("css/index.min.css", "js/index.min.css?v=" + version))
+        //.pipe(replace("js/index.min.js", "js/index.min.js?v=" + version))
+        //.pipe(replace("css/index.min.css", "js/index.min.css?v=" + version))
         .pipe(f.restore)
         .pipe(conn.dest(path.ftpPath));
         //.pipe(gulp.dest('test/'));

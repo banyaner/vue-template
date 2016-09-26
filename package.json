@@ -6,14 +6,15 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf dist",
-    "copy-lib": "cp -r src/img/share dist/img/share && cp -r src/js/lib dist/js && cp src/index.html dist/index.html",
-    "dev": "npm run copy-lib && webpack-dev-server --inline --hot",
-    "build": "npm run clean &&cross-env NODE_ENV=production webpack --progress --hide-modules && npm run copy-lib"
+    "copy": "cp -r src/img/share dist/img/share && cp src/index.html dist/index.html",
+    "dev": "npm run copy && webpack-dev-server --inline --hot",
+    "build": "npm run clean &&cross-env NODE_ENV=production webpack --progress --hide-modules && npm run copy"
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
     "style-loader": "^0.13.1",
-    "vue": "^1.0.0"
+    "vue": "^1.0.0",
+    "vuex": "^0.8.2"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -29,10 +30,12 @@
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.2.1",
+    "vue-touch": "^1.1.0",
+    "qrcode-js": "^0.0.2",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0",
-    "node-sass": "^3.8.0",
+    "node-sass": "^3.10.0",
     "sass-loader": "^4.0.0",
     "style-loader":"^0.13.1",
     "gulp": "^3.9.0",

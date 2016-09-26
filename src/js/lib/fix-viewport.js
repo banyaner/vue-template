@@ -14,8 +14,7 @@
  *     非直接子元素若其父元素未设置字体大小则与直接子元素相同，否则根据父元素字体大小计算其相对值。
  */
 
-(function () {
-    function fixViewport(type, designWidth, emMode) {
+export var fixViewport = function (type, designWidth, emMode) {
         var metaEl = document.querySelector('meta[name="viewport"]');
         //由于初始设置了viewport的width=device-width,所以此处docEl.clientWidth即是屏幕的设备宽度
         var clientWidth = document.documentElement.clientWidth;
@@ -40,7 +39,4 @@
         emMode && window.addEventListener('DOMContentLoaded', function () {
             document.body.style.fontSize = 50 / scale + 'px';
         });
-    }
-
-    fixViewport('fixed', 750);
-}());
+    };
