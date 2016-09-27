@@ -1,6 +1,6 @@
 //import{qrcode} from 'qrcode';
 import {NewsAppClient} from './NewsAppClient'
-var qrcode=require('qrcode-js');
+//var qrcode=require('qrcode-js');
 var $commonLandscape, $commonPC, $commonShare, $commonContainer;
 //初始化
 function init() {
@@ -49,12 +49,14 @@ function pcSetting() {
     };
     if (!isMobile.any()) { //判断是否为android,BlackBerry,ios,windows
         //new QRCode(document.getElementById('common-pc-center')).makeCode(location.href);
-        var base64 = qrcode.toDataURL(location.href, 7);
-        var imgNode =document.createElement('img');
-        imgNode.src=base64;
-        document.getElementById('common-pc-center').appendChild(imgNode);
-        $commonContainer.style.display = 'none';
-        $commonPC.style.display = "block";
+        require(['qrcode-js'], function(qrcode){
+            var base64 = qrcode.toDataURL(location.href, 7);
+            var imgNode =document.createElement('img');
+            imgNode.src=base64;
+            document.getElementById('common-pc-center').appendChild(imgNode);
+            $commonContainer.style.display = 'none';
+            $commonPC.style.display = "block";
+        });
     }
 }
 
