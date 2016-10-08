@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     pkg = require('./package.json');
 var path = {
-    dist: ['dist/**/*', '!dist/**/*.map', '!dist/js/lib/*.js','!dist/js/bundle.js', 'dist/js/*.js'],
+    dist: ['dist/:*+/*', '!dist/**/*.map', '!dist/js/lib/*.js', '!dist/js/bundle.js', 'dist/js/*.js'],
     images: {from: 'src/img/*', to: 'dist/img'},
     ftpPath: 'activity/' + pkg.name,
     ftpConfig: {

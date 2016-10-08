@@ -40,8 +40,10 @@
 <div class="common-container" id="page">
     <input type="button" @click="showSecPage" value="显示第二页"/>
 <!--可替换组件 组件转换效果-->
-    <component :is="currentView" transition="fade" transition-mode="out-in" keep-alive>
-    </component>
+    <keep-alive>
+        <component :is="currentView" transition="fade" transition-mode="out-in">
+        </component>
+    </keep-alive>
 </div>
 <!-- build:js js/index.min.js -->
 <!--<script src="js/lib/fix-viewport.js"></script>-->

@@ -1,9 +1,6 @@
 <!--毫秒计时器-->
-<style scoped>
-
-</style>
 <template>
-    <div class="timer" class="bg">
+    <div class="timer bg">
         <input @click="beginTiming" type="button" value="开始计时"/>
         <input @click="stopTiming" type="button" value="停止计时"/>
 
