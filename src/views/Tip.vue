@@ -1,6 +1,8 @@
 <template>
-    <div class="tip" v-if="showTip" transition="fadeInUp">
-        <p>{{msg}}</p>
+    <div class="tip">
+        <div v-if="showTip" transition="fadeInUp">
+            {{msg}}
+        </div>
     </div>
 </template>
 <script>

@@ -1,3 +1,36 @@
+<template>
+    <div v-show="show">
+        <div class="modal"></div>
+        <div class="modal-center">
+            <strong class="js-close close--circle" @click="closeModal">X</strong>
+            <slot></slot>
+        </div>
+    </div>
+</template>
+<script>
+    export default {
+        data: function () {
+            return {
+                show: false,
+                msg: 'This is a modal!'
+            }
+        },
+        methods: {
+            closeModal: function () {
+                this.show = !this.show;
+                console.log(this.show)
+            }
+        },
+        events: {
+            'show-modal': function () {
+                this.show = true;
+            },
+            'close-modal': function () {
+                this.show = false;
+            }
+        }
+    }
+</script>
 <style scoped>
     .modal {
         position: absolute;
@@ -18,7 +51,7 @@
         margin-left: -245px;
         width: 450px;
         height: 400px;
-        border-radius:10px;
+        border-radius: 10px;
         background: white;
     }
 
@@ -36,32 +69,3 @@
     }
 
 </style>
-<template>
-    <div v-show="show" class="modal">
-        <div class="modal-center">
-            <strong class="js-close close--circle" @click="closeModal">X</strong>
-            <slot></slot>
-        </div>
-    </div>
-</template>
-<script>
-    export default {
-        data: function () {
-            return {
-                show: true,
-                msg: 'This is a modal!'
-            }
-        },
-        methods:{
-            closeModal: function () {
-                this.show=!this.show;
-                console.log(this.show)
-            }
-        },
-        events:{
-            'close-modal':function(){
-                this.show=!this.show;
-            }
-        }
-    }
-</script>

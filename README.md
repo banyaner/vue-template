@@ -48,7 +48,10 @@
 │   │   ├── lib
 │   │   │   ├── NewsAppClient.js
 │   │   │   ├── common.js
-│   │   │   └──fix-viewport.js
+│   │   │   ├── fix-viewport.js
+│   │   │   ├── pace.js
+│   │   │   ├── qrcode.js
+│   │   │   └── zepto.js
 │   │   └── main.js //入口文件 控制窗口切换，历史记录
 │   └── views
 │       ├── FirstPage.vue
@@ -194,7 +197,7 @@ if (process.env.NODE_ENV === 'production') {
     ])
 }
 ```
-执行
+
 ```ruby
 $ npm run dev
 ```
@@ -206,7 +209,7 @@ $ npm run dev
 在package.json里面的script设置环境变量，注意mac与windows的设置方式不一样
 ```ruby
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist",   
     "copy-lib": "cp -r src/img/share dist/img/share && cp -r src/js/lib dist/js && cp src/index.html dist/index.html", //清空dist目录，并将webpack无法编译的文件复制到dist目录
     "dev": "npm run copy-lib && webpack-dev-server --inline --hot",
     "build": "npm run clean &&cross-env NODE_ENV=production webpack --progress --hide-modules && npm run copy-lib"
@@ -269,6 +272,7 @@ $ gulp publish  //上传至发布服务器
 1. ~~lib/ 目录下文件部分依赖zepto、以及写法非模块化，需要改写~~  已完成去除zepto依赖
 2. sass编译时前缀自动补全
 3. NewsAppClient.js改写成vue插件
+
 
 
 [webpack-dev-server]:https://0xreturn.gitbooks.io/webpack/content/chapter1.html

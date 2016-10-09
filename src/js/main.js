@@ -27,6 +27,7 @@ window.vm = new Vue({
         showSecPage: function () {
             this.currentView = 'secPage'
             NewsAppShare.show()
+
             history.pushState({page: this.currentView}, "", location.href);
             console.log(history.state)
         }

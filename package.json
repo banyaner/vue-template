@@ -1,6 +1,5 @@
 {
-  "name": "once-again",
-  "description": "try vue.js again",
+  "name": "vue-gulp-template",
   "author": "zhongjingxue <bjzhongjingxue@corp.netease.com>",
   "main": "main.js",
   "private": true,
