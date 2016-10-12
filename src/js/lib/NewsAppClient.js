@@ -242,7 +242,7 @@ function NewsApp(protocolHandler){
         if(window.extra && window.extra.__newsapp_encrypt){
             afterCallback( window.extra.__newsapp_encrypt(data),'afterEncrypt');
         }else{
-            protocol(Protocols.encrypt+encodeURI(data),callback);
+            protocol(Protocols.encrypt+encodeURIComponent(data),callback);
         }
     }
     /**
@@ -311,7 +311,7 @@ function NewsApp(protocolHandler){
      */
     function modifytitle(title){
         document.title = title || document.title;
-        protocol( Protocols.modifytitle.replace('{TITLE}',encodeURI(title)) );
+        protocol( Protocols.modifytitle.replace('{TITLE}',encodeURIComponent(title)) );
     }
     /**
      * 更新右上角功能菜单按钮
@@ -319,7 +319,7 @@ function NewsApp(protocolHandler){
      */
     function actionbutton(name,callback){
         Callbacks.afterActionbutton = callback;
-        protocol( Protocols.actionbutton.replace('{NAME}',encodeURI(name)),callback );
+        protocol( Protocols.actionbutton.replace('{NAME}',encodeURIComponent(name)),callback );
     }
     /**
      * 添加本地提醒
