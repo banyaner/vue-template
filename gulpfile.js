@@ -7,8 +7,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     pkg = require('./package.json');
 var path = {
-    dist: ['dist/:*+/*', '!dist/**/*.map', '!dist/js/lib/*.js', '!dist/js/bundle.js', 'dist/js/*.js'],
-    images: {from: 'src/img/*', to: 'dist/img'},
+    dist: ['dist/**/*', '!dist/**/*.map'],
+    //images: {from: 'src/img/*', to: 'dist/img'},
     ftpPath: 'activity/' + pkg.name,
     ftpConfig: {
         test: {
@@ -28,10 +28,10 @@ var path = {
 //gulp.task('clean', function (cb) {
 //    return del([path.dist], cb);
 //});
-gulp.task('copy-img', function () {
-    return gulp.src(path.images.from)
-        .pipe(gulp.dest(path.images.to));
-});
+//gulp.task('copy-img', function () {
+//    return gulp.src(path.images.from)
+//        .pipe(gulp.dest(path.images.to));
+//});
 
 //gulp.task('min-js', function(){
 //    return gulp.src('dist/index.html')
@@ -75,6 +75,5 @@ gulp.task('publish', function () {
         //.pipe(replace("css/index.min.css", "js/index.min.css?v=" + version))
         .pipe(f.restore)
         .pipe(conn.dest(path.ftpPath));
-        //.pipe(gulp.dest('test/'));
+    //.pipe(gulp.dest('test/'));
 });
-
